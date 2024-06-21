@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import PanelPage from './pages/Panel';
 
-const baseURL = 'http://hrplus.pt-sma.co.id';
+const baseURL = 'https://hrplus.pt-sma.co.id';
 const http = axios.create({ baseURL });
 
 
