@@ -54,12 +54,12 @@ const PanelPage = ({ profile, getAttendance }) => {
             <Card title={profile.fullname} style={{ textAlign: 'center' }}>
                 <TabView style={{ textAlign: 'center' }} scrollable>
                     <TabPanel header="Attendance">
-                        <Calendar touchUI placeholder="Pilih tanggal" value={dates} onChange={(e) => setDates(e.value) && fetch()} selectionMode="range" />
+                        <Calendar touchUI placeholder="Pilih tanggal" value={dates} onChange={(e) => { setDates(e.value) && fetch() }} selectionMode="range" />
                         <Divider />
                         {!loading ? (
                             <div>
                                 {list.map((l, i) => (
-                                    <Card key={i} title={l.date} subTitle={moment(l.date).format('dddd')} className={`listcard ${['OFF', 'PH'].indexOf(l.remark.remark) != -1 ? 'grey' : (l.abs.length > 1 ? 'green' : 'red')}`}>
+                                    <Card key={i} title={l.date} subTitle={moment(l.date).format('dddd')} className={`listcard ${l.remark && ['OFF', 'PH'].indexOf(l.remark.remark) != -1 ? 'grey' : (l.abs.length > 1 || !l.remark ? 'green' : 'red')}`}>
                                         <div className='listitem'>
                                             <div className='listitem child'>
                                                 <h6>{l.abs[0] ? l.abs[0].shift_id : '-'}</h6>
